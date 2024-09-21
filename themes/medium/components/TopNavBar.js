@@ -6,6 +6,7 @@ import CONFIG from '../config'
 import LogoBar from './LogoBar'
 import { MenuBarMobile } from './MenuBarMobile'
 import { MenuItemDrop } from './MenuItemDrop'
+import DarkModeButton from '@/components/DarkModeButton'
 
 /**
  * 顶部导航栏 + 菜单
@@ -64,7 +65,7 @@ export default function TopNavBar(props) {
   return (
     <div
       id='top-nav'
-      className={'sticky top-0 lg:relative w-full z-40 ' + className}>
+      className={'sticky top-0 w-full z-40 ' + className}>
       {/* 移动端折叠菜单 */}
       <Collapse
         type='vertical'
@@ -85,7 +86,6 @@ export default function TopNavBar(props) {
       <div className='flex w-full h-12 shadow bg-white dark:bg-hexo-black-gray px-7 items-between'>
         {/* 左侧图标Logo */}
         <LogoBar {...props} />
-
         {/* 折叠按钮、仅移动端显示 */}
         <div className='mr-1 flex md:hidden justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
           <div onClick={toggleMenuOpen} className='cursor-pointer'>
@@ -96,13 +96,15 @@ export default function TopNavBar(props) {
             )}
           </div>
         </div>
-
         {/* 桌面端顶部菜单 */}
         <div className='hidden md:flex'>
           {links &&
             links?.map((link, index) => (
               <MenuItemDrop key={index} link={link} />
             ))}
+        </div>
+        <div className='ml-3 flex justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
+          <DarkModeButton/>
         </div>
       </div>
     </div>

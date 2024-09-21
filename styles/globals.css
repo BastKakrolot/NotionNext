@@ -276,3 +276,40 @@ a.avatar-wrapper {
 img {
   display: unset;
 }
+@media (prefers-reduced-motion) {
+  .signPath {
+      animation: none !important;
+      stroke-dasharray: none !important;
+  }
+}
+
+.signPath {
+  --stroke-dasharray: 3900px;
+  stroke-dashoffset: 1px;
+  stroke-dasharray: var(--stroke-dasharray) 0;
+  animation: sign-grow 15s ease forwards infinite;
+  transform-origin: center;
+  animation-delay: 0s;
+}
+
+@keyframes sign-grow {
+  0% {
+      stroke-dashoffset: 1px;
+      stroke-dasharray: 0 var(--stroke-dasharray);
+      opacity: 0;
+  }
+  10% {
+      opacity: 1;
+  }
+  40% {
+      stroke-dasharray: var(--stroke-dasharray) 0;
+  }
+  /* Moving back */
+  85% {
+      stroke-dasharray: var(--stroke-dasharray) 0;
+  }
+  95%,
+  to {
+      stroke-dasharray: 0 var(--stroke-dasharray);
+  }
+}

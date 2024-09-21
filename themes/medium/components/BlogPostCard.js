@@ -30,7 +30,7 @@ const BlogPostCard = ({ post, showSummary }) => {
           }>
           <h2>
             {siteConfig('MEDIUM_POST_LIST_COVER', null, CONFIG) && (
-              <div className='w-full max-h-96 object-cover overflow-hidden mb-2'>
+              <div className='w-full max-h-72 border dark:border-transparent object-cover overflow-hidden mb-2'>
                 <LazyImage
                   src={post.pageCoverThumbnail}
                   style={post.pageCoverThumbnail ? {} : { height: '0px' }}
