@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { siteConfig } from '@/lib/config'
 
 /**
@@ -10,6 +10,10 @@ const Tabs = ({ className, children }) => {
   const [currentTab, setCurrentTab] = useState(0);
 
   const validChildren = children.filter(c => c);
+  
+  useEffect(() => {
+    setCurrentTab(0)
+  },[validChildren.length])
 
   if (validChildren.length === 0) {
     return <></>;
