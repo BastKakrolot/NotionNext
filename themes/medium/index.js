@@ -35,6 +35,8 @@ import TopNavBar from './components/TopNavBar'
 import CONFIG from './config'
 import { Style } from './style'
 
+const containerWidth = 'max-w-7xl'
+
 // 主题全局状态
 const ThemeGlobalMedium = createContext()
 export const useMediumGlobal = () => useContext(ThemeGlobalMedium)
@@ -56,7 +58,7 @@ const LayoutBase = props => {
   useEffect(() => {
     if (post?.toc?.length > 0) {
       setSlotRight(
-        <div key={locale.COMMON.TABLE_OF_CONTENTS}>
+        <div className='h-[calc(100vh-170px)]' key={locale.COMMON.TABLE_OF_CONTENTS}>
           <Catalog toc={post?.toc} />
         </div>
       )
@@ -92,7 +94,7 @@ const LayoutBase = props => {
 
             <div
               id='container-inner'
-              className={`px-7 ${fullWidth ? '' : 'max-w-5xl'} justify-center mx-auto min-h-screen`}>
+              className={`justify-center mx-auto min-h-screen`}>
               <Transition
                 show={!onLoading}
                 appear={true}
@@ -151,7 +153,8 @@ const LayoutBase = props => {
  * @returns
  */
 const LayoutIndex = props => {
-  return <LayoutPostList {...props} />
+  const { fullWidth } = useGlobal()
+  return <div className={`${fullWidth ? '' : containerWidth} mx-auto`}><LayoutPostList {...props} /></div>
 }
 
 /**
@@ -177,13 +180,7 @@ const LayoutPostList = props => {
  */
 const LayoutSlug = props => {
   const { post, prev, next, lock, validPassword } = props
-  const { locale } = useGlobal()
-  const slotRight = post?.toc && post?.toc?.length >= 3 && (
-    <div key={locale.COMMON.TABLE_OF_CONTENTS}>
-      <Catalog toc={post?.toc} />
-    </div>
-  )
-
+  const { fullWidth } = useGlobal()
   const router = useRouter()
   useEffect(() => {
     // 404
@@ -208,40 +205,41 @@ const LayoutSlug = props => {
     <div {...props}>
       {/* 文章锁 */}
       {lock && <ArticleLock validPassword={validPassword} />}
-
       {!lock && (
         <div>
           {/* 文章信息 */}
           <ArticleInfo {...props} />
-
-          {/* Notion文章主体 */}
-          <article id='article-wrapper' className='px-1 max-w-4xl'>
-            {post && <NotionPage post={post} />}
-          </article>
-
-          {/* 文章底部区域  */}
-          <section>
-            {/* 分享 */}
-            <ShareBar post={post} />
-            {/* 文章分类和标签信息 */}
-            <div className='flex justify-between'>
-              {siteConfig('MEDIUM_POST_DETAIL_CATEGORY', null, CONFIG) &&
-                post?.category && <CategoryItem category={post?.category} />}
-              <div>
-                {siteConfig('MEDIUM_POST_DETAIL_TAG', null, CONFIG) &&
-                  post?.tagItems?.map(tag => (
-                    <TagItemMini key={tag.name} tag={tag} />
-                  ))}
+          <div className={`${fullWidth ? '' : containerWidth} mx-auto`}>
+            {/* Notion文章主体 */}
+            <article id='article-wrapper' className={`px-2 ${containerWidth}`}>
+              {post && <NotionPage post={post} />}
+            </article>
+            {/* 文章底部区域  */}
+            <section>
+              {/* 分享 */}
+              <ShareBar post={post} />
+              {/* 文章分类和标签信息 */}
+              <div className='flex justify-between'>
+                {siteConfig('MEDIUM_POST_DETAIL_CATEGORY', null, CONFIG) &&
+                  post?.category && <CategoryItem category={post?.category} />}
+                <div>
+                  {siteConfig('MEDIUM_POST_DETAIL_TAG', null, CONFIG) &&
+                    post?.tagItems?.map(tag => (
+                      <TagItemMini key={tag.name} tag={tag} />
+                    ))}
+                </div>
               </div>
-            </div>
-            {/* 上一篇下一篇文章 */}
-            {post?.type === 'Post' && <ArticleAround prev={prev} next={next} />}
-            {/* 评论区 */}
-            <Comment frontMatter={post} />
-          </section>
+              {/* 上一篇下一篇文章 */}
+              {post?.type === 'Post' && (
+                <ArticleAround prev={prev} next={next} />
+              )}
+              {/* 评论区 */}
+              <Comment frontMatter={post} />
+            </section>
 
-          {/* 移动端目录 */}
-          <TocDrawer {...props} />
+            {/* 移动端目录 */}
+            <TocDrawer {...props} />
+          </div>
         </div>
       )}
     </div>
