@@ -14,7 +14,7 @@ export default function ArticleInfo(props) {
   const imgSrc = post?.pageCover
   return (
     <>
-      <div className='flex flex-col min-h-[300px] justify-center items-center gap-3 relative group'>
+      <div className='flex flex-col h-[50vh] min-h-[300px] justify-center items-center gap-3 relative group'>
         {imgSrc && (
           <div className='w-full absolute z-[0] h-full overflow-hidden flex items-center transition-all'>
             <div className='brightness-[.15] h-full group-hover:brightness-[.2] w-full transition-all duration-500'>
@@ -43,23 +43,27 @@ export default function ArticleInfo(props) {
             )}
             {post?.title}
           </h1>
-          <h4 className='w-full text-center sm:text-lg lg:text-xl opacity-60'>
+          <h4 className='w-full text-center opacity-60'>
             {post?.summary}
           </h4>
           <div className='w-full text-center flex gap-2 justify-center items-center opacity-60'>
-            <span className='mr-2'>
-              发布于:
+            <div>
+              发布于:&nbsp;
               {post?.publishDay}
-            </span>
-            <span>
-              编辑于:
+            </div>
+            <div>
+              编辑于:&nbsp;
               {post?.lastEditedDay}
-            </span>
-          </div>
-          <div className='hidden busuanzi_container_page_pv font-light mr-2 whitespace-nowrap w-full text-center opacity-60'>
-            <i className='mr-1 fas fa-eye' />
+            </div>
+            <div className='hidden busuanzi_container_page_pv font-light mr-2 whitespace-nowrap'>
+            <i className='mr-1 fas fa-eye' />&nbsp;
             <span className='busuanzi_value_page_pv' />
           </div>
+          </div>
+          {/* <div className='hidden busuanzi_container_page_pv font-light mr-2 whitespace-nowrap w-full text-center opacity-60'>
+            <i className='mr-1 fas fa-eye' />
+            <span className='busuanzi_value_page_pv' />
+          </div> */}
           <div className='w-full text-center flex gap-2 text-sm justify-center items-center'>
             {!!post?.tagItems.length && (
               <div className='flex flex-col gap-2'>

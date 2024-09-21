@@ -42,7 +42,7 @@ module.exports = {
         },
         hexo: {
           'background-gray': '#f5f5f5',
-          'black-gray': '#101414',
+          'black-gray': '#000000',
           'light-gray': '#e5e5e5'
         },
         // black: '#212b36',

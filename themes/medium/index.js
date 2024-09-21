@@ -35,7 +35,7 @@ import TopNavBar from './components/TopNavBar'
 import CONFIG from './config'
 import { Style } from './style'
 
-const containerWidth = 'max-w-7xl'
+const containerWidth = 'px-2 max-w-7xl'
 
 // 主题全局状态
 const ThemeGlobalMedium = createContext()
@@ -81,7 +81,7 @@ const LayoutBase = props => {
           id='wrapper'
           className={
             (JSON.parse(siteConfig('LAYOUT_SIDEBAR_REVERSE'))
-              ? 'flex-row-reverse'
+              ? 'flex-row-reverse '
               : '') + 'relative flex justify-between w-full h-full mx-auto'
           }>
           {/* 桌面端左侧菜单 */}
@@ -119,7 +119,7 @@ const LayoutBase = props => {
           {/* 桌面端右侧 */}
           {fullWidth ? null : (
             <div
-              className={`hidden xl:block border-l dark:border-transparent w-80 flex-shrink-0 relative z-10 ${siteConfig('MEDIUM_RIGHT_PANEL_DARK', null, CONFIG) ? 'bg-hexo-black-gray dark' : ''}`}>
+              className={`hidden xl:block border-r dark:border-[#242424] w-80 flex-shrink-0 relative z-10 ${siteConfig('MEDIUM_RIGHT_PANEL_DARK', null, CONFIG) ? 'bg-hexo-black-gray dark' : ''}`}>
               <div className='py-14 px-6 sticky top-0'>
                 <Tabs>
                   {slotRight}
@@ -211,7 +211,7 @@ const LayoutSlug = props => {
           <ArticleInfo {...props} />
           <div className={`${fullWidth ? '' : containerWidth} mx-auto`}>
             {/* Notion文章主体 */}
-            <article id='article-wrapper' className={`px-2 ${containerWidth}`}>
+            <article id='article-wrapper' className={containerWidth}>
               {post && <NotionPage post={post} />}
             </article>
             {/* 文章底部区域  */}
