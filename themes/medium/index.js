@@ -306,7 +306,7 @@ const LayoutSearch = props => {
 const LayoutArchive = props => {
   const { archivePosts } = props
   return (
-    <>
+    <div className={`${containerWidth} mx-auto`}>
       <div className='mb-10 pb-20 md:py-12 py-3  min-h-full'>
         {Object.keys(archivePosts)?.map(archiveTitle => (
           <BlogArchiveItem
@@ -316,7 +316,7 @@ const LayoutArchive = props => {
           />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
@@ -344,7 +344,7 @@ const LayoutCategoryIndex = props => {
   const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-    <>
+    <div className={`${containerWidth} mx-auto`}>
       <div className='bg-white dark:bg-gray-700 py-10'>
         <div className='dark:text-gray-200 mb-5'>
           <i className='mr-4 fas fa-th' />
@@ -370,7 +370,7 @@ const LayoutCategoryIndex = props => {
           })}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -383,7 +383,7 @@ const LayoutTagIndex = props => {
   const { tagOptions } = props
   const { locale } = useGlobal()
   return (
-    <>
+    <div className={`${containerWidth} mx-auto`}>
       <div className='bg-white dark:bg-gray-700 py-10'>
         <div className='dark:text-gray-200 mb-5'>
           <i className='mr-4 fas fa-tag' />
@@ -399,7 +399,7 @@ const LayoutTagIndex = props => {
           })}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
