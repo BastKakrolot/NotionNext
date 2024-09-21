@@ -271,7 +271,7 @@ const LayoutSearch = props => {
   }, [])
 
   return (
-    <>
+    <div className={`${containerWidth} mx-auto`}>
       {/* 搜索导航栏 */}
       <div className='py-12'>
         <div className='pb-4 w-full'>{locale.NAV.SEARCH}</div>
@@ -294,7 +294,7 @@ const LayoutSearch = props => {
           )}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
