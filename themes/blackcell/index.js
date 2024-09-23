@@ -34,8 +34,7 @@ import TocDrawer from './components/TocDrawer'
 import TopNavBar from './components/TopNavBar'
 import CONFIG from './config'
 import { Style } from './style'
-
-const containerWidth = 'px-7 max-w-7xl'
+import PxLayout from './components/PxLayout'
 
 // 主题全局状态
 const ThemeGlobalMedium = createContext()
@@ -153,8 +152,7 @@ const LayoutBase = props => {
  * @returns
  */
 const LayoutIndex = props => {
-  const { fullWidth } = useGlobal()
-  return <div className={`${fullWidth ? '' : containerWidth} mx-auto`}><LayoutPostList {...props} /></div>
+  return <><LayoutPostList {...props} /></>
 }
 
 /**
@@ -163,13 +161,13 @@ const LayoutIndex = props => {
  */
 const LayoutPostList = props => {
   return (
-    <>
+    <PxLayout>
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
       ) : (
         <BlogPostListScroll {...props} />
       )}
-    </>
+    </PxLayout>
   )
 }
 
@@ -180,7 +178,6 @@ const LayoutPostList = props => {
  */
 const LayoutSlug = props => {
   const { post, prev, next, lock, validPassword } = props
-  const { fullWidth } = useGlobal()
   const router = useRouter()
   useEffect(() => {
     // 404
@@ -209,9 +206,9 @@ const LayoutSlug = props => {
         <div>
           {/* 文章信息 */}
           <ArticleInfo {...props} />
-          <div className={`${fullWidth ? '' : containerWidth} mx-auto`}>
+          <PxLayout>
             {/* Notion文章主体 */}
-            <article id='article-wrapper' className={containerWidth}>
+            <article id='article-wrapper'>
               {post && <NotionPage post={post} />}
             </article>
             {/* 文章底部区域  */}
@@ -239,7 +236,7 @@ const LayoutSlug = props => {
 
             {/* 移动端目录 */}
             <TocDrawer {...props} />
-          </div>
+          </PxLayout>
         </div>
       )}
     </div>
@@ -271,7 +268,7 @@ const LayoutSearch = props => {
   }, [])
 
   return (
-    <div className={`${containerWidth} mx-auto`}>
+    <PxLayout>
       {/* 搜索导航栏 */}
       <div className='py-12'>
         <div className='pb-4 w-full'>{locale.NAV.SEARCH}</div>
@@ -294,7 +291,7 @@ const LayoutSearch = props => {
           )}
         </div>
       )}
-    </div>
+    </PxLayout>
   )
 }
 
@@ -306,7 +303,7 @@ const LayoutSearch = props => {
 const LayoutArchive = props => {
   const { archivePosts } = props
   return (
-    <div className={`${containerWidth} mx-auto`}>
+    <PxLayout>
       <div className='mb-10 pb-20 md:py-12 py-3  min-h-full'>
         {Object.keys(archivePosts)?.map(archiveTitle => (
           <BlogArchiveItem
@@ -316,7 +313,7 @@ const LayoutArchive = props => {
           />
         ))}
       </div>
-    </div>
+    </PxLayout>
   )
 }
 
@@ -344,8 +341,8 @@ const LayoutCategoryIndex = props => {
   const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-    <div className={`${containerWidth} mx-auto`}>
-      <div className='bg-white dark:bg-gray-700 py-10'>
+    <PxLayout>
+      <div className='py-10'>
         <div className='dark:text-gray-200 mb-5'>
           <i className='mr-4 fas fa-th' />
           {locale.COMMON.CATEGORY}:
@@ -370,7 +367,7 @@ const LayoutCategoryIndex = props => {
           })}
         </div>
       </div>
-    </div>
+    </PxLayout>
   )
 }
 
@@ -383,8 +380,8 @@ const LayoutTagIndex = props => {
   const { tagOptions } = props
   const { locale } = useGlobal()
   return (
-    <div className={`${containerWidth} mx-auto`}>
-      <div className='bg-white dark:bg-gray-700 py-10'>
+    <PxLayout>
+      <div className='py-10'>
         <div className='dark:text-gray-200 mb-5'>
           <i className='mr-4 fas fa-tag' />
           {locale.COMMON.TAGS}:
@@ -399,7 +396,7 @@ const LayoutTagIndex = props => {
           })}
         </div>
       </div>
-    </div>
+    </PxLayout>
   )
 }
 
