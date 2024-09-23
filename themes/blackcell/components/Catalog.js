@@ -61,7 +61,7 @@ const Catalog = ({ toc }) => {
 
   return <div className='h-full flex flex-col px-3'>
     <div className='w-full flex-none mt-2 mb-4'>
-      <Progress />
+      <Progress showPercent={false} />
     </div>
     <div className={`overflow-y-auto flex-1 overscroll-none scroll-hidden`} ref={tRef}>
       <nav className='h-full  text-black'>

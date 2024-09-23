@@ -206,7 +206,7 @@ const LayoutSlug = props => {
         <div>
           {/* 文章信息 */}
           <ArticleInfo {...props} />
-          <PxLayout>
+          <PxLayout className='px-1'>
             {/* Notion文章主体 */}
             <article id='article-wrapper'>
               {post && <NotionPage post={post} />}
