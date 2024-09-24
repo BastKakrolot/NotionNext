@@ -1,5 +1,4 @@
 import { siteConfig } from '@/lib/config'
-
 /**
  * 社交联系方式按钮组
  * @returns {JSX.Element}
@@ -23,7 +22,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'twitter'}
           href={siteConfig('CONTACT_TWITTER')}>
-          <i className='fab fa-twitter transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-x-twitter transform hover:scale-125 duration-150 hover:text-green-600' />
         </a>
       )}
       {siteConfig('CONTACT_TELEGRAM') && (
