@@ -12,7 +12,6 @@ const Footer = ({ title }) => {
     <footer className='z-10 dark:bg-hexo-black-gray flex-shrink-0 justify-center text-center m-auto w-full leading-6 text-sm p-6 relative'>
       <i className='fas fa-copyright' /> {`${copyrightDate}`}{' '}
       <span>
-        <i className='mx-1 animate-pulse fas fa-heart' />{' '}
         <a
           href={siteConfig('LINK')}
           className='underline font-bold text-gray-500 dark:text-gray-300 '>
@@ -29,7 +28,7 @@ const Footer = ({ title }) => {
           </>
         )}
         <span className='hidden busuanzi_container_site_pv'>
-          <i className='fas fa-eye' />
+          <i className='fas fa-fire' />
           <span className='px-1 busuanzi_value_site_pv'> </span>{' '}
         </span>
         <span className='pl-2 hidden busuanzi_container_site_uv'>
@@ -37,7 +36,7 @@ const Footer = ({ title }) => {
           <span className='px-1 busuanzi_value_site_uv'> </span>{' '}
         </span>
         <br />
-        <span className='text-xs font-serif'>
+        <span className='text-xs font-serif mr-2'>
           Powered by{' '}
           <a
             href='https://github.com/tangly1024/NotionNext'
@@ -46,7 +45,6 @@ const Footer = ({ title }) => {
           </a>
           .
         </span>
-        <br />
         <span className='text-xs font-serif'>
           Custom by{' '}
           <Link

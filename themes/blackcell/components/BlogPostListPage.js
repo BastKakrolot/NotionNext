@@ -22,11 +22,16 @@ const BlogPostListPage = ({ page = 1, posts = [], postCount }) => {
   }
 
   return (
-    <div className='w-full justify-center'>
+    <div className='w-full pt-10 justify-center'>
       <div id='posts-wrapper'>
         {/* 文章列表 */}
-        {posts?.map(post => (
-          <BlogPostCard key={post.id} post={post} />
+        {posts?.map((post, i) => (
+          <>
+            <BlogPostCard key={post.id} post={post} />
+            {i !== posts.length - 1 && (
+              <div className='border-t-[1px] my-6'></div>
+            )}
+          </>
         ))}
       </div>
       <PaginationSimple page={page} totalPage={totalPage} />

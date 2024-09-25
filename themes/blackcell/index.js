@@ -21,7 +21,6 @@ import BlogPostListPage from './components/BlogPostListPage'
 import BlogPostListScroll from './components/BlogPostListScroll'
 import BottomMenuBar from './components/BottomMenuBar'
 import Catalog from './components/Catalog'
-import CategoryGroup from './components/CategoryGroup'
 import CategoryItem from './components/CategoryItem'
 import Footer from './components/Footer'
 import InfoCard from './components/InfoCard'
@@ -34,7 +33,6 @@ import TocDrawer from './components/TocDrawer'
 import TopNavBar from './components/TopNavBar'
 import CONFIG from './config'
 import { Style } from './style'
-import PxLayout from './components/PxLayout'
 
 // 主题全局状态
 const ThemeGlobalMedium = createContext()
@@ -57,7 +55,9 @@ const LayoutBase = props => {
   useEffect(() => {
     if (post?.toc?.length > 0) {
       setSlotRight(
-        <div className='h-[calc(100vh-170px)]' key={locale.COMMON.TABLE_OF_CONTENTS}>
+        <div
+          className='h-[calc(100vh-170px)]'
+          key={locale.COMMON.TABLE_OF_CONTENTS}>
           <Catalog toc={post?.toc} />
         </div>
       )
@@ -65,6 +65,17 @@ const LayoutBase = props => {
       setSlotRight(null)
     }
   }, [post])
+
+  const resize = () => {
+    changeTocVisible(false)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
 
   const slotTop = <BlogPostBar {...props} />
 
@@ -76,6 +87,8 @@ const LayoutBase = props => {
       <div
         id='theme-medium'
         className={`${siteConfig('FONT_STYLE')} bg-white dark:bg-hexo-black-gray w-full h-full min-h-screen justify-center dark:text-gray-300 scroll-smooth`}>
+        {/* 顶部导航栏 */}
+        <TopNavBar {...props} />
         <main
           id='wrapper'
           className={
@@ -88,12 +101,9 @@ const LayoutBase = props => {
 
           {/* 主区 */}
           <div id='container-wrapper' className='w-full relative z-10'>
-            {/* 顶部导航栏 */}
-            <TopNavBar {...props} />
-
             <div
               id='container-inner'
-              className={`justify-center mx-auto min-h-screen`}>
+              className={`justify-center mx-auto px-7 max-w-5xl min-h-screen`}>
               <Transition
                 show={!onLoading}
                 appear={true}
@@ -107,7 +117,6 @@ const LayoutBase = props => {
                 {slotTop}
                 {children}
               </Transition>
-
               <JumpToTopButton />
             </div>
 
@@ -118,8 +127,8 @@ const LayoutBase = props => {
           {/* 桌面端右侧 */}
           {fullWidth ? null : (
             <div
-              className={`hidden xl:block border-r dark:border-[#242424] w-80 flex-shrink-0 relative z-10 ${siteConfig('MEDIUM_RIGHT_PANEL_DARK', null, CONFIG) ? 'bg-hexo-black-gray dark' : ''}`}>
-              <div className='py-14 px-6 sticky top-0'>
+              className={`hidden xl:block border-l dark:border-[#242424] w-80 flex-shrink-0 relative z-10 ${siteConfig('MEDIUM_RIGHT_PANEL_DARK', null, CONFIG) ? 'bg-hexo-black-gray dark' : ''}`}>
+              <div className='py-14 px-6 sticky top-[50px]'>
                 <Tabs>
                   {slotRight}
                   <div key={locale.NAV.ABOUT}>
@@ -152,7 +161,11 @@ const LayoutBase = props => {
  * @returns
  */
 const LayoutIndex = props => {
-  return <><LayoutPostList {...props} /></>
+  return (
+    <>
+      <LayoutPostList {...props} />
+    </>
+  )
 }
 
 /**
@@ -161,13 +174,13 @@ const LayoutIndex = props => {
  */
 const LayoutPostList = props => {
   return (
-    <PxLayout>
+    <>
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
       ) : (
         <BlogPostListScroll {...props} />
       )}
-    </PxLayout>
+    </>
   )
 }
 
@@ -206,37 +219,33 @@ const LayoutSlug = props => {
         <div>
           {/* 文章信息 */}
           <ArticleInfo {...props} />
-          <PxLayout className='!px-1'>
-            {/* Notion文章主体 */}
-            <article id='article-wrapper'>
-              {post && <NotionPage post={post} />}
-            </article>
-            {/* 文章底部区域  */}
-            <section>
-              {/* 分享 */}
-              <ShareBar post={post} />
-              {/* 文章分类和标签信息 */}
-              <div className='flex justify-between'>
-                {siteConfig('MEDIUM_POST_DETAIL_CATEGORY', null, CONFIG) &&
-                  post?.category && <CategoryItem category={post?.category} />}
-                <div>
-                  {siteConfig('MEDIUM_POST_DETAIL_TAG', null, CONFIG) &&
-                    post?.tagItems?.map(tag => (
-                      <TagItemMini key={tag.name} tag={tag} />
-                    ))}
-                </div>
+          {/* Notion文章主体 */}
+          <article id='article-wrapper'>
+            {post && <NotionPage post={post} />}
+          </article>
+          {/* 文章底部区域  */}
+          <section>
+            {/* 分享 */}
+            <ShareBar post={post} />
+            {/* 文章分类和标签信息 */}
+            <div className='flex justify-between'>
+              {siteConfig('MEDIUM_POST_DETAIL_CATEGORY', null, CONFIG) &&
+                post?.category && <CategoryItem category={post?.category} />}
+              <div>
+                {siteConfig('MEDIUM_POST_DETAIL_TAG', null, CONFIG) &&
+                  post?.tagItems?.map(tag => (
+                    <TagItemMini key={tag.name} tag={tag} />
+                  ))}
               </div>
-              {/* 上一篇下一篇文章 */}
-              {post?.type === 'Post' && (
-                <ArticleAround prev={prev} next={next} />
-              )}
-              {/* 评论区 */}
-              <Comment frontMatter={post} />
-            </section>
+            </div>
+            {/* 上一篇下一篇文章 */}
+            {post?.type === 'Post' && <ArticleAround prev={prev} next={next} />}
+            {/* 评论区 */}
+            <Comment frontMatter={post} />
+          </section>
 
-            {/* 移动端目录 */}
-            <TocDrawer {...props} />
-          </PxLayout>
+          {/* 移动端目录 */}
+          <TocDrawer {...props} />
         </div>
       )}
     </div>
@@ -255,20 +264,23 @@ const LayoutSearch = props => {
   const currentSearch = keyword || router?.query?.s
 
   useEffect(() => {
-    if (isBrowser) {
-      replaceSearchResult({
-        doms: document.getElementById('posts-wrapper'),
-        search: keyword,
-        target: {
-          element: 'span',
-          className: 'text-red-500 border-b border-dashed'
-        }
-      })
+    // 高亮搜索结果
+    if (currentSearch) {
+      setTimeout(() => {
+        replaceSearchResult({
+          doms: document.getElementsByClassName('replace'),
+          search: currentSearch,
+          target: {
+            element: 'span',
+            className: 'text-red-500 border-b border-dashed'
+          }
+        })
+      }, 100)
     }
-  }, [])
+  }, [currentSearch])
 
   return (
-    <PxLayout>
+    <>
       {/* 搜索导航栏 */}
       <div className='py-12'>
         <div className='pb-4 w-full'>{locale.NAV.SEARCH}</div>
@@ -276,7 +288,6 @@ const LayoutSearch = props => {
         {!currentSearch && (
           <>
             <TagGroups {...props} />
-            <CategoryGroup {...props} />
           </>
         )}
       </div>
@@ -291,7 +302,7 @@ const LayoutSearch = props => {
           )}
         </div>
       )}
-    </PxLayout>
+    </>
   )
 }
 
@@ -303,7 +314,8 @@ const LayoutSearch = props => {
 const LayoutArchive = props => {
   const { archivePosts } = props
   return (
-    <PxLayout>
+    <>
+      <LayoutTagIndex {...props} />
       <div className='mb-10 pb-20 md:py-12 py-3  min-h-full'>
         {Object.keys(archivePosts)?.map(archiveTitle => (
           <BlogArchiveItem
@@ -313,7 +325,7 @@ const LayoutArchive = props => {
           />
         ))}
       </div>
-    </PxLayout>
+    </>
   )
 }
 
@@ -341,7 +353,7 @@ const LayoutCategoryIndex = props => {
   const { categoryOptions } = props
   const { locale } = useGlobal()
   return (
-    <PxLayout>
+    <>
       <div className='py-10'>
         <div className='dark:text-gray-200 mb-5'>
           <i className='mr-4 fas fa-th' />
@@ -367,7 +379,7 @@ const LayoutCategoryIndex = props => {
           })}
         </div>
       </div>
-    </PxLayout>
+    </>
   )
 }
 
@@ -380,23 +392,18 @@ const LayoutTagIndex = props => {
   const { tagOptions } = props
   const { locale } = useGlobal()
   return (
-    <PxLayout>
-      <div className='py-10'>
-        <div className='dark:text-gray-200 mb-5'>
-          <i className='mr-4 fas fa-tag' />
-          {locale.COMMON.TAGS}:
-        </div>
-        <div id='tags-list' className='duration-200 flex flex-wrap'>
-          {tagOptions?.map(tag => {
-            return (
-              <div key={tag.name} className='p-2'>
-                <TagItemMini key={tag.name} tag={tag} />
-              </div>
-            )
-          })}
-        </div>
+    <div className='pt-10 pb-2 text-2xl font-bold dark:text-gray-300'>
+      <div className='dark:text-gray-200 mb-5'>{locale.COMMON.TAGS}:</div>
+      <div id='tags-list' className='duration-200 flex gap-2 flex-wrap'>
+        {tagOptions?.map(tag => {
+          return (
+            <div key={tag.name}>
+              <TagItemMini key={tag.name} tag={tag} />
+            </div>
+          )
+        })}
       </div>
-    </PxLayout>
+    </div>
   )
 }
 

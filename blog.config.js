@@ -18,28 +18,36 @@ const BLOG = {
     process.env.NEXT_PUBLIC_IS_TAG_COLOR_DISTINGUISHED === 'true' || true, // 对于名称相同的tag是否区分tag的颜色
 
   // 3.14.1版本后，欢迎语在此配置，英文逗号隔开 ,  即可支持多个欢迎语打字效果。
-  GREETING_WORDS:
-    process.env.NEXT_PUBLIC_GREETING_WORDS ||
-    '物以类聚 人以群分',
+  GREETING_WORDS: process.env.NEXT_PUBLIC_GREETING_WORDS || '物以类聚 人以群分',
 
   CUSTOM_MENU: process.env.NEXT_PUBLIC_CUSTOM_MENU || false, // 支持Menu 类型，从3.12.0版本起，各主题将逐步支持灵活的二级菜单配置，替代了原来的Page类型，此配置是试验功能、默认关闭。
 
   AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || '李谢贻', // 您的昵称 例如 tangly1024
   BIO: process.env.NEXT_PUBLIC_BIO || '物以类聚 人以群分', // 作者简介
   LINK: process.env.NEXT_PUBLIC_LINK || 'https://blackcell.top', // 网站地址
-  KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || 'blackcell, Notion, 博客, 李谢贻', // 网站关键词 英文逗号隔开
+  KEYWORDS:
+    process.env.NEXT_PUBLIC_KEYWORD || 'blackcell, Notion, 博客, 李谢贻', // 网站关键词 英文逗号隔开
 
   // 社交链接，不需要可留空白，例如 CONTACT_WEIBO:''
-  CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'blackcellcode@gmail.com', // 邮箱地址 例如mail@tangly1024.com
+  CONTACT_EMAIL:
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'blackcellcode@gmail.com', // 邮箱地址 例如mail@tangly1024.com
   CONTACT_WEIBO: process.env.NEXT_PUBLIC_CONTACT_WEIBO || '', // 你的微博个人主页
-  CONTACT_TWITTER: process.env.NEXT_PUBLIC_CONTACT_TWITTER || 'https://x.com/blackcellcode', // 你的twitter个人主页
-  CONTACT_GITHUB: process.env.NEXT_PUBLIC_CONTACT_GITHUB || 'https://github.com/BastKakrolot', // 你的github个人主页 例如 https://github.com/tangly1024
+  CONTACT_TWITTER:
+    process.env.NEXT_PUBLIC_CONTACT_TWITTER || 'https://x.com/blackcellcode', // 你的twitter个人主页
+  CONTACT_GITHUB:
+    process.env.NEXT_PUBLIC_CONTACT_GITHUB || 'https://github.com/BastKakrolot', // 你的github个人主页 例如 https://github.com/tangly1024
   CONTACT_TELEGRAM: process.env.NEXT_PUBLIC_CONTACT_TELEGRAM || '', // 你的telegram 地址 例如 https://t.me/tangly_1024
   CONTACT_LINKEDIN: process.env.NEXT_PUBLIC_CONTACT_LINKEDIN || '', // 你的linkedIn 首页
-  CONTACT_INSTAGRAM: process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || 'https://www.instagram.com/zzzs20_/', // 您的instagram地址
-  CONTACT_BILIBILI: process.env.NEXT_PUBLIC_CONTACT_BILIBILI || 'https://space.bilibili.com/7223506?', // B站主页
+  CONTACT_INSTAGRAM:
+    process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM ||
+    'https://www.instagram.com/zzzs20_/', // 您的instagram地址
+  CONTACT_BILIBILI:
+    process.env.NEXT_PUBLIC_CONTACT_BILIBILI ||
+    'https://space.bilibili.com/7223506?', // B站主页
   CONTACT_YOUTUBE: process.env.NEXT_PUBLIC_CONTACT_YOUTUBE || '', // Youtube主页
-  CONTACT_XIAOHONGSHU: process.env.NEXT_PUBLIC_CONTACT_XIAOHONGSHU || 'https://www.xiaohongshu.com/user/profile/5df1216a0000000001007eaf', // 小红书主页
+  CONTACT_XIAOHONGSHU:
+    process.env.NEXT_PUBLIC_CONTACT_XIAOHONGSHU ||
+    'https://www.xiaohongshu.com/user/profile/5df1216a0000000001007eaf', // 小红书主页
   CONTACT_ZHISHIXINGQIU: process.env.NEXT_PUBLIC_CONTACT_ZHISHIXINGQIU || '', // 知识星球
   CONTACT_WEHCHAT_PUBLIC: process.env.NEXT_PUBLIC_CONTACT_WEHCHAT_PUBLIC || '', // 微信公众号 格式：https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=【xxxxxx】==#wechat_redirect
 
@@ -153,7 +161,7 @@ const BLOG = {
 
   // 侧栏布局 是否反转(左变右,右变左) 已支持主题: hexo next medium fukasawa example
   LAYOUT_SIDEBAR_REVERSE:
-    process.env.NEXT_PUBLIC_LAYOUT_SIDEBAR_REVERSE || true,
+    process.env.NEXT_PUBLIC_LAYOUT_SIDEBAR_REVERSE || false,
 
   // 一个小插件展示你的facebook fan page~ @see https://tw.andys.pro/article/add-facebook-fanpage-notionnext
   FACEBOOK_PAGE_TITLE: process.env.NEXT_PUBLIC_FACEBOOK_PAGE_TITLE || null, // 邊欄 Facebook Page widget 的標題欄，填''則無標題欄 e.g FACEBOOK 粉絲團'
@@ -359,10 +367,13 @@ const BLOG = {
     process.env.NEXT_PUBLIC_COMMENT_UTTERRANCES_REPO || '', // 你的代码仓库名， 例如我是 'tangly1024/NotionNext'； 更多文档参考 https://utteranc.es/
 
   // giscus @see https://giscus.app/
-  COMMENT_GISCUS_REPO: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO || 'BastKakrolot/NotionNext', // 你的Github仓库名 e.g 'tangly1024/NotionNext'
-  COMMENT_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID || 'R_kgDOM0XcfQ', // 你的Github Repo ID e.g ( 設定完 giscus 即可看到 )
+  COMMENT_GISCUS_REPO:
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO || 'BastKakrolot/NotionNext', // 你的Github仓库名 e.g 'tangly1024/NotionNext'
+  COMMENT_GISCUS_REPO_ID:
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_REPO_ID || 'R_kgDOM0XcfQ', // 你的Github Repo ID e.g ( 設定完 giscus 即可看到 )
   COMMENT_GISCUS_CATEGORY_ID:
-    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID || 'DIC_kwDOM0Xcfc4CioDt', // 你的Github Discussions 內的 Category ID ( 設定完 giscus 即可看到 )
+    process.env.NEXT_PUBLIC_COMMENT_GISCUS_CATEGORY_ID ||
+    'DIC_kwDOM0Xcfc4CioDt', // 你的Github Discussions 內的 Category ID ( 設定完 giscus 即可看到 )
   COMMENT_GISCUS_MAPPING:
     process.env.NEXT_PUBLIC_COMMENT_GISCUS_MAPPING || 'pathname', // 你的Github Discussions 使用哪種方式來標定文章, 預設 'pathname'
   COMMENT_GISCUS_REACTIONS_ENABLED:

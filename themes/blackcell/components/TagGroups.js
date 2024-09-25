@@ -14,10 +14,10 @@ const TagGroups = ({ tagOptions, currentTag }) => {
   return (
     <div id='tags-group' className='dark:border-gray-600 py-4'>
       <div className='mb-2'>
-        <i className='mr-2 fas fa-tag' />
+        <i className='mr-2 fas fa-hashtag' />
         {locale.COMMON.TAGS}
       </div>
-      <div className='space-y-2'>
+      <div className='flex gap-2 flex-wrap'>
         {tagOptions?.map(tag => {
           const selected = tag.name === currentTag
           return <TagItemMini key={tag.name} tag={tag} selected={selected} />

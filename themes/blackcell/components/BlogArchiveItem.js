@@ -8,7 +8,9 @@ import Link from 'next/link'
 export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
   return (
     <div key={archiveTitle}>
-      <div id={archiveTitle} className='pt-16 pb-4 text-3xl dark:text-gray-300'>
+      <div
+        id={archiveTitle}
+        className='pt-10 pb-2 text-2xl font-bold dark:text-gray-300'>
         {archiveTitle}
       </div>
       <ul>
@@ -16,16 +18,17 @@ export default function BlogArchiveItem({ archiveTitle, archivePosts }) {
           return (
             <li
               key={post.id}
-              className='border-l-2 p-1 text-xs md:text-base items-center  hover:scale-x-105 hover:border-gray-500 dark:hover:border-gray-300 dark:border-gray-400 transform duration-500'>
-              <div id={post?.publishDay}>
-                <span className='text-gray-400'>{post.date?.start_date}</span>{' '}
-                &nbsp;
+              className='p-1 text-base items-center hover:border-gray-500 dark:hover:border-gray-300 dark:border-gray-400 transform duration-500'>
+              <div id={post?.publishDay} className='flex gap-4 justify-between'>
                 <Link
                   passHref
                   href={post?.href}
-                  className='dark:text-gray-400  dark:hover:text-gray-300 overflow-x-hidden hover:underline cursor-pointer text-gray-600'>
+                  className='dark:text-gray-400 truncate dark:hover:text-gray-300 hover:font-bold hover:text-primary overflow-x-hidden cursor-pointer text-gray-600'>
                   {post.title}
                 </Link>
+                <span className='text-gray-400'>
+                  {Number(post.date?.start_date.split('-').at(-1))}th
+                </span>
               </div>
             </li>
           )

@@ -1,5 +1,4 @@
 import { useGlobal } from '@/lib/global'
-import PxLayout from './PxLayout'
 
 /**
  * 文章列表上方嵌入
@@ -13,9 +12,9 @@ export default function BlogPostBar(props) {
   const getBar = () => {
     if (tag) {
       return (
-        <div className='flex items-center text-xl py-8'>
-          <i className='mr-2 fas fa-tag' />
-          {locale.COMMON.TAGS}:{tag}
+        <div className='flex items-center font-bold text-3xl py-8'>
+          <i className='mr-2 fas fa-hashtag' />
+          {tag}
         </div>
       )
     } else if (category) {
@@ -29,5 +28,5 @@ export default function BlogPostBar(props) {
       return <></>
     }
   }
-  return <PxLayout>{getBar()}</PxLayout>
+  return <>{getBar()}</>
 }

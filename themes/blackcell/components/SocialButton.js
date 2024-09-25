@@ -6,14 +6,14 @@ import { siteConfig } from '@/lib/config'
  */
 const SocialButton = () => {
   return (
-    <div className='space-x-6 text-xl text-gray-600 dark:text-gray-400 flex-wrap flex justify-center '>
+    <div className='space-x-4 text-2xl text-gray-600 dark:text-gray-400 flex-wrap flex justify-center '>
       {siteConfig('CONTACT_GITHUB') && (
         <a
           target='_blank'
           rel='noreferrer'
           title={'github'}
           href={siteConfig('CONTACT_GITHUB')}>
-          <i className='fab fa-github transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-github transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_TWITTER') && (
@@ -22,7 +22,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'twitter'}
           href={siteConfig('CONTACT_TWITTER')}>
-          <i className='fab fa-x-twitter transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-x-twitter transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_TELEGRAM') && (
@@ -31,7 +31,7 @@ const SocialButton = () => {
           rel='noreferrer'
           href={siteConfig('CONTACT_TELEGRAM')}
           title={'telegram'}>
-          <i className='fab fa-telegram transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-telegram transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_LINKEDIN') && (
@@ -49,7 +49,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'weibo'}
           href={siteConfig('CONTACT_WEIBO')}>
-          <i className='fab fa-weibo transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-weibo transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_INSTAGRAM') && (
@@ -58,7 +58,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'instagram'}
           href={siteConfig('CONTACT_INSTAGRAM')}>
-          <i className='fab fa-instagram transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-instagram transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_EMAIL') && (
@@ -67,7 +67,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'email'}
           href={`mailto:${siteConfig('CONTACT_EMAIL')}`}>
-          <i className='fas fa-envelope transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fas fa-envelope transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {JSON.parse(siteConfig('ENABLE_RSS')) && (
@@ -76,7 +76,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'RSS'}
           href={'/rss/feed.xml'}>
-          <i className='fas fa-rss transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fas fa-rss transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_BILIBILI') && (
@@ -85,7 +85,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'bilibili'}
           href={siteConfig('CONTACT_BILIBILI')}>
-          <i className='fab fa-bilibili transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-bilibili transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
       {siteConfig('CONTACT_YOUTUBE') && (
@@ -94,7 +94,7 @@ const SocialButton = () => {
           rel='noreferrer'
           title={'youtube'}
           href={siteConfig('CONTACT_YOUTUBE')}>
-          <i className='fab fa-youtube transform hover:scale-125 duration-150 hover:text-green-600' />
+          <i className='fab fa-youtube transform hover:scale-125 duration-150 hover:text-primary' />
         </a>
       )}
     </div>
