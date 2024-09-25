@@ -118,6 +118,9 @@ nav {
   -khtml-user-select: none;
   user-select: none;
 }
+.notion-asset-wrapper-embed{
+  width: 100%;
+}
 
 @media (min-width: 768px) {
   .sticky-nav-full {
