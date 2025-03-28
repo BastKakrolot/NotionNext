@@ -941,9 +941,11 @@ code[class*='language-'] {
 .dark-mode .notion-callout {
   border-color: var(--bg-color-2);
 }
-
+.notion-callout .notion-page-icon-inline{
+  align-self: center !important;
+}
 .notion-callout .notion-page-icon {
-  align-self: flex-start;
+  /* align-self: flex-start; */
   width: 24px;
   height: 24px;
   font-size: 1em;

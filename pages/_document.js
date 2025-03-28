@@ -29,10 +29,10 @@ class MyDocument extends Document {
               />
             </>
           )}
-          <script
+          {/* <script
             id='chatway'
             async='true'
-            src='https://cdn.chatway.app/widget.js?id=XphIfRvp8WA5'></script>
+            src='https://cdn.chatway.app/widget.js?id=XphIfRvp8WA5'></script> */}
         </Head>
 
         <body>
