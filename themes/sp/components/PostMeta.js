@@ -10,8 +10,8 @@ export const PostMeta = props => {
   // const { locale } = useGlobal()
 
   return (
-    <section className='flex-wrap flex flex-col mt-2 font-serif leading-8'>
-      <h1 className='title-1 relative text-xl md:text-4xl pb-4 z-10'>
+    <section className='flex-wrap flex flex-col mt-2 leading-8'>
+      <h1 className='title-1 relative text-4xl font-semibold pb-4 z-10'>
         {post?.title}
         {!!post?.translate && <sup className='opacity-80'>&nbsp;译</sup>}
       </h1>

@@ -45,7 +45,7 @@ const LayoutBase = props => {
   return (
     <div
       id='theme-sp'
-      className={`${siteConfig('FONT_STYLE')} dark:text-gray-300  dark:bg-black scroll-smooth`}>
+      className={`${siteConfig('FONT_STYLE')} dark:text-gray-300 font-serif dark:bg-black scroll-smooth`}>
       <Style />
 
       {/* 页头 */}
@@ -62,8 +62,7 @@ const LayoutBase = props => {
           ${LAYOUT_VERTICAL ? 'items-center flex-col' : 'items-start'} 
           `}>
           {/* 内容 */}
-          <div
-            className={`max-w-5xl w-full pt-0 md:pt-16 pb-16 xl:px-14 lg:px-4`}>
+          <div className={`max-w-5xl w-full pt-0 xl:pt-16  px-4 pb-16`}>
             <Transition
               show={!onLoading}
               appear={true}
@@ -82,7 +81,7 @@ const LayoutBase = props => {
 
           {/* 侧边栏 */}
           {!fullWidth && (
-            <div className='w-64 hidden md:block sticky top-24'>
+            <div className='w-64 hidden md:block flex-none sticky top-24'>
               <SideBar {...props} />
             </div>
           )}

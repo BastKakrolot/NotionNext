@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/config'
+import SocialButton from './SocialButton'
 
 export const Footer = props => {
   const d = new Date()
@@ -10,6 +11,7 @@ export const Footer = props => {
   return (
     <footer className='relative w-full p-6 md:hidden'>
       <div className='md:p-0 text-center flex flex-col gap-1 text-xs'>
+        <SocialButton />
         <div>
           &copy;{`${copyrightDate}`} {siteConfig('AUTHOR')}. All rights
           reserved.

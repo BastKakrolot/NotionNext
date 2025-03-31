@@ -13,7 +13,7 @@ const Announcement = ({ post, className }) => {
     return <></>
   }
   return (
-    <aside className='rounded overflow-hidden mb-6'>
+    <aside className='rounded overflow-hidden mb-1'>
       {post && (
         <div id='announcement-content'>
           <NotionPage post={post} className='text-center' />

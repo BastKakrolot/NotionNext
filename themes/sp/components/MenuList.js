@@ -57,7 +57,7 @@ export const MenuList = props => {
   }
 
   return (
-    <div className='flex md:flex-col gap-3 md:gap-1 font-serif text-[18px]'>
+    <div className='flex md:flex-col gap-3 md:gap-3 font-serif text-[18px]'>
       {links.map((link, index) => (
         <MenuItemDrop key={index} link={link} />
       ))}

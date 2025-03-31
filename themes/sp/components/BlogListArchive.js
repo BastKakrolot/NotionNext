@@ -20,7 +20,7 @@ export default function BlogListArchive({ archiveTitle, archivePosts }) {
           return (
             <li
               key={post.id}
-              className='border-l p-1 text-xs md:text-base items-center  hover:scale-x-105 hover:border-gray-500 dark:hover:border-gray-300 dark:border-gray-400 transform duration-500'>
+              className='border-l p-1 md:text-base items-center  hover:scale-x-105 hover:border-gray-500 dark:hover:border-gray-300 dark:border-gray-400 transform duration-500'>
               <div id={post?.publishDay}>
                 <span className='text-gray-400 font-serif italic'>
                   {post?.publishDay}
